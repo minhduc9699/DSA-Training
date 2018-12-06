@@ -46,8 +46,10 @@ class BTree:
 
   def find(self, val):
     node = self.root
-    while node is not None:
+    found = False
+    while node is not None and not found :
       if node.content == val:
+        found = True
         return node
       if node.content < val:
         node = node.right
