@@ -51,13 +51,21 @@ class BTree:
       if node.content == val:
         found = True
         return node
-      if node.content < val:
-        node = node.right
-      else:
-        node = node.left
+      else: 
+        if val < node.content:
+          node = node.left
+        else:
+          node = node.right
    
 
 if __name__ == "__main__":
     tree = BTree()
     tree.add(10)
+    tree.add(9)
+    tree.add(11)
+    tree.add(13)
+
     print(tree)
+    t = tree.find(11)
+    print(t)
+
