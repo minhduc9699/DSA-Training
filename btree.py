@@ -25,37 +25,47 @@ class BTree:
   def __str__(self):
     return str(self.root)
 
-  def add(self, val):
-    new_node = BNode(val)
-    if self.root.content is None:
-      self.root = new_node
+  def add(self, val, root=None):
+    if root is None:
+      current_root = self.root
     else:
-      self._add(self.root, new_node)
-  
-  def _add(self, root, new_node):
-    if new_node.content < root.content:
-        if root.left is None:
-          root.left = new_node
-        else:
-          self._add(root.left, new_node)
-    elif new_node.content > root.content:
-      if root.right is None:
-        root.right = new_node
+      current_root = root
+    new_node = BNode(val)
+
+    if current_root.content is None:
+      self.root = new_node
+    elif new_node.content < current_root.content:
+      if current_root.left is None:
+        current_root.left = new_node
       else:
-        self._add(root.right, new_node)
+        self.add(val, current_root.left)
+    elif new_node.content > current_root.content:
+      if current_root.right is None:
+        current_root.right = new_node
+      else:
+        self.add(val, current_root.right)
+
+  # def _add(self, root, new_node):
+  #   if new_node.content < root.content:
+  #       if root.left is None:
+  #         root.left = new_node
+  #       else:
+  #         self._add(root.left, new_node)
+  #   elif new_node.content > root.content:
+  #     if root.right is None:
+  #       root.right = new_node
+  #     else:
+  #       self._add(root.right, new_node)
 
   def find(self, val):
     node = self.root
-    found = False
-    while node is not None and not found :
+    while node is not None:
       if node.content == val:
-        found = True
         return node
-      else: 
-        if val < node.content:
-          node = node.left
-        else:
-          node = node.right
+      elif val < node.content:
+        node = node.left
+      else:
+        node = node.right
    
 
 if __name__ == "__main__":
@@ -64,8 +74,8 @@ if __name__ == "__main__":
     tree.add(9)
     tree.add(11)
     tree.add(13)
+    tree.add(1)
 
-    print(tree)
-    t = tree.find(11)
-    print(t)
+
+    # t = tree.find(11)
 

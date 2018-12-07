@@ -6,7 +6,7 @@ class Stack:
     items_string = ""
     white_space = " "
     for i in range(len(self.items)):
-      if len(self.items) == 1 or i == len(self.items) - 1:
+      if i == len(self.items) - 1:
         white_space = ""
       items_string += str(self.items[i]) + white_space
      
