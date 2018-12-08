@@ -45,18 +45,6 @@ class BTree:
       else:
         self.add(val, current_root.right)
 
-  # def _add(self, root, new_node):
-  #   if new_node.content < root.content:
-  #       if root.left is None:
-  #         root.left = new_node
-  #       else:
-  #         self._add(root.left, new_node)
-  #   elif new_node.content > root.content:
-  #     if root.right is None:
-  #       root.right = new_node
-  #     else:
-  #       self._add(root.right, new_node)
-
   def find(self, val):
     node = self.root
     while node is not None:
